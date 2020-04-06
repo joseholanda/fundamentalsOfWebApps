@@ -1,0 +1,25 @@
+note left of browser:
+User write a msg on the field
+and click submit button
+end note
+browser->server: HTTP POST new_note
+note right of server:
+The Server creates a new note object, 
+and adds it to an array called notes
+end note
+server-->browser: The server responds with HTTP status code 302
+note left of browser:
+This is a URL redirect, with which the server 
+asks the browser to do a new HTTP GET request 
+to the address defined in the header's 
+Location - the address notes.
+end note
+note over browser:
+The browser reloads the Notes page. 
+The reload causes three more HTTP requests: 
+fetching the style sheet (main.css), 
+the JavaScript code (main.js), 
+and the raw data of the notes (data.json).
+end note
+browser->server: HTTP GET notes
+server-->browser: server responds with all notes
